@@ -28,13 +28,13 @@ body {
   height: 100%;
   background: url('./background-tech.jpg') no-repeat center center fixed;
   background-size: cover;
-  filter: blur(4px);
+  filter: blur(3px);
   z-index: -1;
   opacity: 0.7;
 }
 
-/* Contenedor principal del login */
-.login-container {
+/* Contenedor principal del login y recuperación de contraseña */
+.login-container, .forgot-password-container {
   width: 400px;
   background: rgba(255, 255, 255, 0.9);
   border-radius: 10px;
@@ -46,21 +46,21 @@ body {
 }
 
 /* Parte superior con el fondo enfocado */
-.login-header {
+.login-header, .forgot-password-header {
   background: url('./background-tech.jpg') no-repeat center center;
   background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 200px; /* Ajusta la altura según lo que necesites */
+  height: 150px; /* Ajustado para un tamaño más acorde */
   color: white;
-  font-size: 10px; /* Cambié el tamaño para que sea más grande */
+  font-size: 12px; /* Tamaño de texto ajustado */
   text-align: center;
   border-bottom: 2px solid rgba(0, 0, 0, 0.1);
 }
 
-/* Cuerpo del login */
-.login-body {
+/* Cuerpo del login y recuperación de contraseña */
+.login-body, .forgot-password-body {
   padding: 20px 30px;
   display: flex;
   flex-direction: column;
@@ -68,7 +68,7 @@ body {
 }
 
 /* Estilos de los campos */
-.login-body input {
+.login-body input, .forgot-password-body input {
   width: 100%;
   padding: 12px;
   margin-bottom: 15px;
@@ -76,6 +76,30 @@ body {
   border-radius: 5px;
   box-sizing: border-box;
   font-size: 16px;
+}
+
+/* Estilo del texto en la recuperación de contraseña */
+.forgot-password-body .instruction-text {
+  color: #333; /* Color del texto para que sea visible sobre fondo blanco */
+  font-size: 14px; /* Ajustado a un tamaño de texto adecuado */
+  margin-bottom: 20px;
+  text-align: center; /* Centra el texto */
+}
+
+/* Botón de inicio de sesión y envío */
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #0056b3;
 }
 
 /* Footer del login con "Recuérdame" y "¿Olvidaste tu contraseña?" */
@@ -109,26 +133,11 @@ body {
 .login-footer a {
   color: #007bff;
   text-decoration: none;
+  font-size: 14px; /* Tamaño de texto consistente con otros enlaces */
 }
 
 .login-footer a:hover {
   text-decoration: underline;
-}
-
-/* Botón de inicio de sesión */
-button {
-  width: 100%;
-  padding: 12px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-button:hover {
-  background-color: #0056b3;
 }
 
 /* Texto de registro */
@@ -148,4 +157,53 @@ button:hover {
 
 .signup a:hover {
   text-decoration: underline;
+}
+
+/* Estilo del enlace en la página de recuperación de contraseña */
+.forgot-password-footer {
+  margin-top: 20px; /* Separación del botón de enviar */
+  width: 100%;
+  text-align: center;
+}
+
+.forgot-password-footer a {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 14px; /* Tamaño de texto consistente con otros enlaces */
+}
+
+.forgot-password-footer a:hover {
+  text-decoration: underline;
+}
+
+/* Estilo del cuadro de diálogo */
+.dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  z-index: 1000;
+}
+
+.dialog p {
+  margin-bottom: 10px;
+  font-size: 14px; /* Tamaño de texto adecuado */
+  color: black; /* Cambiado a negro para visibilidad */
+}
+
+.dialog button {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.dialog button:hover {
+  background: #0056b3;
 }

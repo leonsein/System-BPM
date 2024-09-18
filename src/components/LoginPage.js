@@ -22,7 +22,8 @@ function LoginPage() {
                 <input type="checkbox" />
                 <span>Recuérdame</span>
               </label>
-              <a href="#">¿Olvidaste tu contraseña?</a>
+              {/* Cambiado a Link para navegación interna */}
+              <Link to="/forgot-password">¿Olvidaste tu contraseña?</Link>
             </div>
             <button type="submit">Iniciar sesión</button>
             <div className="signup">
