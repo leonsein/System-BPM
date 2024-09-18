@@ -1,15 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Importa Route y Routes
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; 
 import App from './App';
-import LoginPage from './components/LoginPage'; // Asegúrate de importar LoginPage
-import './index.css'; // Asegúrate de importar tus estilos
+import LoginPage from './components/LoginPage'; 
+import RegisterPage from './components/RegisterPage'; // Importar RegisterPage
+import './index.css'; 
 
 ReactDOM.render(
   <Router>
     <Routes>
-      <Route path="/" element={<App />} />       {/* Ruta para la página principal */}
-      <Route path="/login" element={<LoginPage />} /> {/* Ruta para la página de login */}
+      <Route path="/" element={<App />} /> {/* Página principal */}
+      <Route path="/login" element={<LoginPage />} /> {/* Página de login */}
+      <Route path="/register" element={<RegisterPage />} /> {/* Página de registro */}
     </Routes>
   </Router>,
   document.getElementById('root')

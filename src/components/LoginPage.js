@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react'; 
+import { Link } from 'react-router-dom'; // Importar Link para la navegación
 import './LoginPage.css'; // Asegúrate de tener este archivo CSS
 
 function LoginPage() {
@@ -26,7 +27,7 @@ function LoginPage() {
             <button type="submit">Iniciar sesión</button>
             <div className="signup">
               <span>¿Aún no tienes una cuenta?</span>
-              <a href="#">Regístrate</a>
+              <Link to="/register">Regístrate</Link> {/* Actualizado para usar Link */}
             </div>
           </form>
         </div>
