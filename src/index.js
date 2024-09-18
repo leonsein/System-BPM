@@ -6,6 +6,7 @@ import LoginPage from './components/LoginPage';
 import RegisterPage from './components/RegisterPage'; // Importar RegisterPage
 import './index.css'; 
 import ForgotPasswordPage from './components/ForgotPasswordPage';
+import ResetPasswordPage from './components/ResetPasswordPage';
 
 ReactDOM.render(
   <Router>
@@ -14,6 +15,7 @@ ReactDOM.render(
       <Route path="/login" element={<LoginPage />} /> {/* Página de login */}
       <Route path="/register" element={<RegisterPage />} /> {/* Página de registro */}
       <Route path="/forgot-password" element={<ForgotPasswordPage />} /> {/* Página de registro */}
+      <Route path="/reset-password" element={<ResetPasswordPage />} />
     </Routes>
   </Router>,
   document.getElementById('root')
