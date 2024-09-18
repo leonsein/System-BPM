@@ -1,0 +1,170 @@
+/* Estilos básicos del body */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif; /* Aplicar la fuente Poppins */
+  background-color: #ffffff; /* Fondo estático, oscuro */
+  color: white;
+  height: 100vh;
+  overflow: hidden; /* Evitar el scroll */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Contenedor principal de la aplicación */
+.App {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  text-align: center;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+}
+
+/* Estilo del encabezado */
+.App-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 20px;
+  background-color: #ffffff; /* Fondo del header */
+  box-sizing: border-box;
+  border-bottom: 2px solid #000000; /* Contorno en la parte inferior del header */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Añade sombra para resaltar el header */
+  z-index: 1;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+}
+
+/* Estilo del logotipo */
+.logo {
+  height: 40px; /* Ajusta el tamaño del logotipo */
+}
+
+/* Contenedor de íconos en el header */
+.icon-container {
+  display: flex;
+  align-items: center;
+  margin-left: auto; /* Alinea los íconos a la derecha */
+}
+
+/* Estilo del ícono de login */
+.login-icon {
+  font-size: 40px;
+  color: black;
+  cursor: pointer;
+  margin-left: 20px; /* Espacio entre íconos si es necesario */
+}
+
+/* Estilo del ícono de la persona */
+.person-icon {
+  font-size: 40px;
+  color: black;
+  cursor: pointer;
+  margin-left: 20px; /* Espacio entre íconos si es necesario */
+}
+
+/* Estilo del contenido principal */
+.content {
+  position: relative;
+  z-index: 2;
+  animation: fadeIn 3s ease-in-out forwards; /* Animación de entrada del contenido */
+}
+
+/* Estilo del título h1 */
+h1 {
+  font-size: 4em;
+  letter-spacing: 0.1em;
+  word-spacing: 0.2em;
+  margin-bottom: 0.2em; /* Reduce el espacio debajo del título principal */
+  animation: fadeIn 3s ease-in-out forwards; /* Animación del título */
+}
+
+/* Estilo del subtítulo h2 */
+h2 {
+  font-size: 2.5em;
+  letter-spacing: 0.05em;
+  word-spacing: 0.15em;
+  margin-top: 0; /* Elimina el margen superior */
+  margin-bottom: 0.5em; /* Ajusta el espacio debajo del subtítulo */
+  animation: fadeIn 3s ease-in-out forwards; /* Animación del subtítulo */
+}
+
+/* Estilo del párrafo p */
+p {
+  font-size: 1.5em;
+  letter-spacing: 0.05em;
+  word-spacing: 0.1em;
+  line-height: 1.6em;
+  margin: 0; /* Elimina el margen del párrafo */
+  animation: fadeIn 3s ease-in-out forwards; /* Animación del párrafo */
+}
+
+/* Estilo de la línea horizontal */
+.underline {
+  width: 50%;
+  margin: 0.5em auto;
+  border: 0;
+  border-top: 2px solid white;
+  opacity: 0;
+  animation: underlineFadeInOut 3s ease-in-out forwards; /* Animación de la línea horizontal */
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes underlineFadeInOut {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Estilos para el contenedor del fondo de Three.js */
+#three-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0; /* Asegúrate de que esté detrás de todo el contenido */
+  background-color: transparent; /* Elimina el fondo negro si es necesario */
+}
+
+/* Estilos durante la redirección */
+.App.redirecting {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease-out, visibility 0.5s ease-out; /* Transición suave para ocultar el contenido */
+}
+
+.App.redirecting .App-header,
+.App.redirecting .content {
+  opacity: 0;
+  visibility: hidden;
+}
+
