@@ -1,0 +1,58 @@
+/* Estilos existentes... */
+
+/* Nuevos estilos para el menú lateral */
+.sidebar {
+    position: absolute;
+    left: -200px; /* Inicialmente oculto, se coloca fuera de la vista */
+    top: 0;
+    width: 200px; /* Ancho del menú lateral */
+    height: 100vh; /* Altura completa de la ventana */
+    background-color: #000000; /* Color de fondo del menú */
+    color: white; /* Color del texto */
+    transition: left 0.3s ease; /* Animación de transición suave */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5); /* Sombra para el menú */
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+  }
+  
+  .sidebar.open {
+    left: 0; /* Mueve el menú a la vista cuando está abierto */
+  }
+  
+  .menu-button {
+    background: none; /* Sin fondo */
+    border: none; /* Sin borde */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+  }
+  
+  .menu-icon {
+    color: black; /* Color negro para las rayas */
+    font-size: 24px; /* Tamaño del icono */
+    transition: color 0.3s; /* Transición suave para el color */
+  }
+  
+  /* Cambiar el color del fondo al pasar el puntero */
+  .menu-button:hover {
+    background-color: transparent; /* Cambia el color de fondo al pasar el puntero (sin fondo) */
+  }
+  
+  /* Cambiar el color de las rayas al pasar el puntero */
+  .menu-button:hover .menu-icon {
+    color: #f0022a; /* Cambia el color del icono al pasar el ratón */
+  }
+  
+  .menu-list {
+    list-style: none; /* Sin viñetas en la lista */
+    padding: 20px; /* Espaciado interno */
+  }
+  
+  .menu-list li {
+    padding: 15px 0; /* Espaciado entre los elementos del menú */
+    cursor: pointer; /* Cambia el cursor al pasar sobre los elementos */
+  }
+  
+  .menu-list li:hover {
+    background-color: #f0022a; /* Color de fondo al pasar el ratón */
+  }
+  
+  /* Resto del código CSS... */
+  
