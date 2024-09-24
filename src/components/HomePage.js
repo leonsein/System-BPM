@@ -1,12 +1,26 @@
-import React, { useState } from 'react'; // Importamos useState
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Importamos useNavigate
 import './HomePage.css'; // Importamos los estilos
 import logo from './mci-technology.png'; // Asegúrate de que tienes tu logo en la carpeta src
 
 function HomePage() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // Estado para el menú
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // Estado para el menú lateral
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false); // Estado para el menú de usuario
+
+  const navigate = useNavigate(); // Hook para redireccionar
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen); // Cambia el estado del menú al hacer clic
+    setIsMenuOpen(!isMenuOpen); // Cambia el estado del menú lateral
+  };
+
+  const toggleUserMenu = () => {
+    setIsUserMenuOpen(!isUserMenuOpen); // Cambia el estado del menú de usuario
+  };
+
+  // Función para cerrar sesión
+  const handleLogout = () => {
+    // Aquí podrías agregar lógica adicional de cierre de sesión si es necesario
+    navigate('/'); // Redirige al usuario a la página de inicio "/"
   };
 
   return (
@@ -23,25 +37,27 @@ function HomePage() {
               <li>Inicio</li>
               <li>Servicios</li>
               <li>Contacto</li>
-              <li>Cerrar Sesión</li>
+              <li onClick={handleLogout}>Cerrar Sesión</li> {/* Opción para cerrar sesión */}
             </ul>
           </div>
         </div>
 
         <img src={logo} alt="Logo MCI" className="logo" />
-        
-        <div className="login-icon">
+
+        {/* Icono de usuario para desplegar el menú */}
+        <div className="login-icon" onClick={toggleUserMenu}>
           <i className="fas fa-user"></i>
+        </div>
+
+        {/* Menú desplegable de usuario */}
+        <div className={`user-menu ${isUserMenuOpen ? 'open' : ''}`}>
+          <ul>
+            <li onClick={handleLogout}>Cerrar Sesión</li> {/* Cerrar sesión desde el menú del usuario */}
+          </ul>
         </div>
       </header>
 
-      {/* Contenido principal */}
-      <main className="content">
-        <h1>Bienvenido al sistema BPM</h1>
-        <h2>MCI Technology</h2>
-        <hr className="underline" /> {/* Línea horizontal para el texto */}
-        <p>Soluciones de ingeniería en automatización industrial</p>
-      </main>
+      
     </div>
   );
 }
