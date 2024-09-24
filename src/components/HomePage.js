@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './HomePage.css';
-import logo from './mci-technology.png'; // Asegúrate de tener el logo disponible.
+import logo from './mci-technology.png';
 
 function HomePage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -51,19 +51,30 @@ function HomePage() {
       </div>
 
       {/* Menú lateral (sidebar) */}
-      <div className={`sidebar ${isMenuOpen ? 'open' : ''}`}>
+      <div className={`sidebar ${isMenuOpen ? 'open' : 'collapsed'}`}>
         <ul className="menu-list">
+          {/* Encabezado del menú lateral */}
+{isMenuOpen && (
+  <div className="sidebar-header">
+    <h2 className="process-title">Procesos</h2>
+  </div>
+)}
+
           <li>
-            <i className="fas fa-building"></i> Áreas
+            <i className="fas fa-building"></i> 
+            <span className="menu-text">Áreas</span>
           </li>
           <li>
-            <i className="fas fa-inbox"></i> Bandeja de entrada
+            <i className="fas fa-inbox"></i> 
+            <span className="menu-text">Bandeja de entrada</span>
           </li>
           <li>
-            <i className="fas fa-paper-plane"></i> Bandeja de salida
+            <i className="fas fa-paper-plane"></i> 
+            <span className="menu-text">Bandeja de salida</span>
           </li>
           <li>
-            <i className="fas fa-check-circle"></i> Finalizados
+            <i className="fas fa-check-circle"></i> 
+            <span className="menu-text">Finalizados</span>
           </li>
         </ul>
       </div>

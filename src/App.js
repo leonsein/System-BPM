@@ -105,7 +105,8 @@ function App() {
           <img src={logo} className="logo" alt="logo" />
           <div className="icon-container">
             <div className="login-icon" onClick={redirectToLoginPage}>
-              <i className="fas fa-user"></i> {/* Ícono de login */}
+              <i className="fas fa-user-circle"></i> {/* Ícono de login */}
+              <span className="login-text">Acceder</span> {/* Texto Acceder */}
             </div>
           </div>
         </header>

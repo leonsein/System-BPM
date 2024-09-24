@@ -88,18 +88,20 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 250px;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.9);
   color: white;
   padding-top: 60px;
-  transform: translateX(-100%);
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
   z-index: 50;
 }
 
 .sidebar.open {
-  transform: translateX(0);
+  width: 250px;
+}
+
+.sidebar.collapsed {
+  width: 80px; /* Menú colapsado con solo íconos */
 }
 
 .menu-list {
@@ -108,18 +110,49 @@
 }
 
 .menu-list li {
-  padding: 15px 10px;
+  padding: 10px 10px; /* Ajuste del padding */
   display: flex;
   align-items: center;
   cursor: pointer;
   font-size: 18px;
+  white-space: nowrap;
 }
 
 .menu-list li i {
   margin-right: 10px;
 }
 
+.menu-text {
+  display: none;
+}
+
+.sidebar.open .menu-text {
+  display: inline; /* Mostrar texto cuando el menú esté abierto */
+}
+
 .menu-list li:hover {
   background-color: #444;
   border-radius: 4px;
+}
+
+.sidebar.collapsed .menu-text {
+  display: none; /* Esconder el texto cuando esté colapsado */
+}
+
+.sidebar.collapsed .menu-list li {
+  justify-content: center;
+}
+
+.sidebar.collapsed .menu-list li i {
+  margin-right: 0;
+}
+
+/* Estilo para el título "Procesos" */
+.process-title {
+  color: white; /* Color blanco para el texto */
+  text-decoration: underline; /* Subrayado */
+  margin: 0; /* Sin margen */
+  padding: 10px 20px; /* Espacio alrededor para una mejor apariencia */
+  font-size: 20px; /* Ajustar tamaño de fuente si es necesario */
+  line-height: 2.5; /* Espacio entre líneas */
 }

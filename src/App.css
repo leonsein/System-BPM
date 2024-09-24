@@ -168,3 +168,35 @@ p {
   visibility: hidden;
 }
 
+/* Contenedor de iconos e íconos */
+.icon-container {
+  display: flex;
+  align-items: center;
+  margin-left: auto; /* Alinea el icono a la derecha */
+}
+
+.login-icon {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-left: 20px; /* Espacio entre el icono y otros elementos si es necesario */
+}
+
+/* Ajusta el ícono de login */
+.login-icon i {
+  font-size: 35px; /* Mantiene el tamaño del ícono */
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px; /* Espacio entre el ícono y el texto */
+}
+
+/* Ajusta el texto "Acceder" */
+.login-text {
+  font-size: 0.8em; /* Ajusta el tamaño del texto (puedes cambiar el valor) */
+  color: black;
+  display: flex;
+  align-items: center; /* Centra verticalmente el texto */
+}
+
