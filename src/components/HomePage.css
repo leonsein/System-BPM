@@ -1,105 +1,125 @@
-/* Menú lateral */
-.sidebar {
-  position: absolute;
-  left: -200px;
-  top: 0;
-  width: 200px;
+/* Estructura General */
+.homepage {
+  font-family: Arial, sans-serif;
   height: 100vh;
-  background-color: #000000;
-  color: white;
-  transition: left 0.3s ease;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
-  z-index: 1000;
+  width: 100vw;
+  overflow: hidden;
 }
 
-.sidebar.open {
-  left: 0;
+/* Barra superior (topbar) */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #eaeaea;
+  position: relative;
+  z-index: 100;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Elimina el fondo azul al hacer hover sobre el botón de menú */
-.menu-button {
-  background: none; /* Sin fondo */
-  outline: none; /* Elimina cualquier borde al hacer clic */
+.topbar-left,
+.topbar-center,
+.topbar-right {
+  display: flex;
+  align-items: center;
 }
 
-/* Asegúrate de que el hover no cambie el fondo */
-.menu-button:hover {
-  background-color: transparent; /* Sin fondo en hover */
-}
-
-/* Cambia solo el color de las tres rayas al pasar el puntero */
-.menu-button:hover .menu-icon {
-  color: red; /* Cambia 'red' por el color que prefieras */
+.topbar-left .menu-button {
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
 }
 
 .menu-icon {
-  color: black;
-  font-size: 24px;
-  transition: color 0.3s;
+  color: #333;
 }
 
-/* Lista del menú lateral */
+.topbar-center {
+  justify-content: center;
+}
+
+.logo {
+  height: 40px;
+  cursor: pointer;
+}
+
+.topbar-right {
+  position: relative;
+}
+
+.login-icon {
+  font-size: 28px;
+  color: #333;
+  cursor: pointer;
+}
+
+.user-menu {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  z-index: 10;
+}
+
+.user-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 10px 0;
+}
+
+.user-menu li {
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #333;
+}
+
+.user-menu li:hover {
+  background-color: #f5f5f5;
+}
+
+/* Sidebar (menú lateral) */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding-top: 60px;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  z-index: 50;
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
+
 .menu-list {
   list-style: none;
   padding: 20px;
 }
 
 .menu-list li {
-  padding: 15px 0;
+  padding: 15px 10px;
+  display: flex;
+  align-items: center;
   cursor: pointer;
-  display: flex; /* Alinea icono y texto */
-  align-items: center; /* Centra verticalmente el icono y el texto */
-  text-align: left; /* Asegúrate de que el texto esté alineado a la izquierda */
+  font-size: 18px;
 }
 
 .menu-list li i {
-  margin-right: 10px; /* Espacio entre el icono y el texto */
+  margin-right: 10px;
 }
 
 .menu-list li:hover {
-  background-color: #f0022a; /* Color de fondo al hacer hover */
+  background-color: #444;
+  border-radius: 4px;
 }
-
-/* Estilo del menú de usuario */
-.user-menu {
-  position: absolute;
-  top: 50px;
-  right: 10px;
-  width: 150px;
-  background-color: #000000;
-  color: white;
-  border-radius: 5px;
-  display: none;
-  transition: all 0.3s ease;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-  z-index: 1000;
-}
-
-.user-menu.open {
-  display: block;
-}
-
-.user-menu ul {
-  list-style: none;
-  padding: 10px;
-  margin: 0;
-}
-
-.user-menu li {
-  padding: 10px;
-  cursor: pointer;
-  text-align: center;
-}
-
-.user-menu li:hover {
-  background-color: #f0022a;
-}
-
-.process-title {
-  color: white; /* Color del texto */
-  text-align: left; /* Alineación a la izquierda */
-  padding: 10px 0; /* Espaciado alrededor del texto */
-  border-bottom: 2px solid white; /* Línea blanca debajo del texto */
-  margin-bottom: 10px; /* Espacio entre el texto y los elementos de la lista */
-}
-

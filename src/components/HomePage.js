@@ -1,74 +1,72 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Importamos useNavigate
-import './HomePage.css'; // Importamos los estilos
-import logo from './mci-technology.png'; // Asegúrate de que tienes tu logo en la carpeta src
+import { useNavigate } from 'react-router-dom';
+import './HomePage.css';
+import logo from './mci-technology.png'; // Asegúrate de tener el logo disponible.
 
 function HomePage() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // Estado para el menú lateral
-  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false); // Estado para el menú de usuario
-
-  const navigate = useNavigate(); // Hook para redireccionar
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen); // Cambia el estado del menú lateral
+    setIsMenuOpen(!isMenuOpen);
   };
 
   const toggleUserMenu = () => {
-    setIsUserMenuOpen(!isUserMenuOpen); // Cambia el estado del menú de usuario
+    setIsUserMenuOpen(!isUserMenuOpen);
   };
 
-  // Función para cerrar sesión
   const handleLogout = () => {
-    // Aquí podrías agregar lógica adicional de cierre de sesión si es necesario
-    navigate('/'); // Redirige al usuario a la página de inicio "/"
+    navigate('/');
   };
 
   return (
-    <div className="App">
-      {/* Header con logotipo, menú y icono de inicio de sesión */}
-      <header className="App-header">
-        <div className="menu-container">
+    <div className="homepage">
+      {/* Barra superior */}
+      <div className="topbar">
+        <div className="topbar-left">
           <button className="menu-button" onClick={toggleMenu}>
-            <span className="menu-icon">&#9776;</span> {/* Icono de tres líneas en el header */}
+            <span className="menu-icon">&#9776;</span>
           </button>
-          <div className={`sidebar ${isMenuOpen ? 'open' : ''}`}>
-            <ul className="menu-list">
-              <li onClick={toggleMenu}>&#9776; {/* Icono de tres líneas para cerrar */}</li>
-              <div className="process-title">Procesos</div>
-              <li>
-                <i className="fas fa-building"></i> {/* Icono de edificio para "Áreas" */}
-                Áreas
-              </li>
-              <li>
-                <i className="fas fa-inbox"></i> {/* Icono de bandeja de entrada */}
-                Bandeja de entrada
-              </li>
-              <li>
-                <i className="fas fa-paper-plane"></i> {/* Icono de bandeja de salida */}
-                Bandeja de salida
-              </li>
-              <li>
-                <i className="fas fa-check-circle"></i> {/* Icono de finalizados */}
-                Finalizados
-              </li>
-            </ul>
+        </div>
+
+        <div className="topbar-center">
+          <img src={logo} alt="Logo MCI" className="logo" />
+        </div>
+
+        <div className="topbar-right">
+          <div className="login-icon" onClick={toggleUserMenu}>
+            <i className="fas fa-user-circle"></i>
           </div>
-        </div>
 
-        <img src={logo} alt="Logo MCI" className="logo" />
-
-        {/* Icono de usuario para desplegar el menú */}
-        <div className="login-icon" onClick={toggleUserMenu}>
-          <i className="fas fa-user"></i>
+          {/* Menú desplegable del usuario */}
+          {isUserMenuOpen && (
+            <div className="user-menu">
+              <ul>
+                <li onClick={handleLogout}>Cerrar Sesión</li>
+              </ul>
+            </div>
+          )}
         </div>
+      </div>
 
-        {/* Menú desplegable de usuario */}
-        <div className={`user-menu ${isUserMenuOpen ? 'open' : ''}`}>
-          <ul>
-            <li onClick={handleLogout}>Cerrar Sesión</li> {/* Cerrar sesión desde el menú del usuario */}
-          </ul>
-        </div>
-      </header>
+      {/* Menú lateral (sidebar) */}
+      <div className={`sidebar ${isMenuOpen ? 'open' : ''}`}>
+        <ul className="menu-list">
+          <li>
+            <i className="fas fa-building"></i> Áreas
+          </li>
+          <li>
+            <i className="fas fa-inbox"></i> Bandeja de entrada
+          </li>
+          <li>
+            <i className="fas fa-paper-plane"></i> Bandeja de salida
+          </li>
+          <li>
+            <i className="fas fa-check-circle"></i> Finalizados
+          </li>
+        </ul>
+      </div>
     </div>
   );
 }
