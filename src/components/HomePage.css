@@ -16,11 +16,20 @@
   left: 0;
 }
 
-/* Botón de menú lateral */
+/* Elimina el fondo azul al hacer hover sobre el botón de menú */
 .menu-button {
-  background: none;
-  border: none;
-  cursor: pointer;
+  background: none; /* Sin fondo */
+  outline: none; /* Elimina cualquier borde al hacer clic */
+}
+
+/* Asegúrate de que el hover no cambie el fondo */
+.menu-button:hover {
+  background-color: transparent; /* Sin fondo en hover */
+}
+
+/* Cambia solo el color de las tres rayas al pasar el puntero */
+.menu-button:hover .menu-icon {
+  color: red; /* Cambia 'red' por el color que prefieras */
 }
 
 .menu-icon {
@@ -38,10 +47,17 @@
 .menu-list li {
   padding: 15px 0;
   cursor: pointer;
+  display: flex; /* Alinea icono y texto */
+  align-items: center; /* Centra verticalmente el icono y el texto */
+  text-align: left; /* Asegúrate de que el texto esté alineado a la izquierda */
+}
+
+.menu-list li i {
+  margin-right: 10px; /* Espacio entre el icono y el texto */
 }
 
 .menu-list li:hover {
-  background-color: #f0022a;
+  background-color: #f0022a; /* Color de fondo al hacer hover */
 }
 
 /* Estilo del menú de usuario */
@@ -78,3 +94,12 @@
 .user-menu li:hover {
   background-color: #f0022a;
 }
+
+.process-title {
+  color: white; /* Color del texto */
+  text-align: left; /* Alineación a la izquierda */
+  padding: 10px 0; /* Espaciado alrededor del texto */
+  border-bottom: 2px solid white; /* Línea blanca debajo del texto */
+  margin-bottom: 10px; /* Espacio entre el texto y los elementos de la lista */
+}
+

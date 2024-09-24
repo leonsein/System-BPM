@@ -34,10 +34,23 @@ function HomePage() {
           <div className={`sidebar ${isMenuOpen ? 'open' : ''}`}>
             <ul className="menu-list">
               <li onClick={toggleMenu}>&#9776; {/* Icono de tres líneas para cerrar */}</li>
-              <li>Inicio</li>
-              <li>Servicios</li>
-              <li>Contacto</li>
-              <li onClick={handleLogout}>Cerrar Sesión</li> {/* Opción para cerrar sesión */}
+              <div className="process-title">Procesos</div>
+              <li>
+                <i className="fas fa-building"></i> {/* Icono de edificio para "Áreas" */}
+                Áreas
+              </li>
+              <li>
+                <i className="fas fa-inbox"></i> {/* Icono de bandeja de entrada */}
+                Bandeja de entrada
+              </li>
+              <li>
+                <i className="fas fa-paper-plane"></i> {/* Icono de bandeja de salida */}
+                Bandeja de salida
+              </li>
+              <li>
+                <i className="fas fa-check-circle"></i> {/* Icono de finalizados */}
+                Finalizados
+              </li>
             </ul>
           </div>
         </div>
@@ -56,8 +69,6 @@ function HomePage() {
           </ul>
         </div>
       </header>
-
-      
     </div>
   );
 }
