@@ -92,16 +92,12 @@
   background-color: rgba(0, 0, 0, 0.9);
   color: white;
   padding-top: 60px;
-  transition: all 0.3s ease;
   z-index: 50;
+  width: 80px; /* Ancho del menú colapsado */
 }
 
 .sidebar.open {
-  width: 250px;
-}
-
-.sidebar.collapsed {
-  width: 80px; /* Menú colapsado con solo íconos */
+  width: 250px; /* Ancho del menú abierto */
 }
 
 .menu-list {
@@ -110,7 +106,7 @@
 }
 
 .menu-list li {
-  padding: 10px 10px; /* Ajuste del padding */
+  padding: 10px 10px;
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -127,7 +123,7 @@
 }
 
 .sidebar.open .menu-text {
-  display: inline; /* Mostrar texto cuando el menú esté abierto */
+  display: inline;
 }
 
 .menu-list li:hover {
@@ -136,7 +132,7 @@
 }
 
 .sidebar.collapsed .menu-text {
-  display: none; /* Esconder el texto cuando esté colapsado */
+  display: none;
 }
 
 .sidebar.collapsed .menu-list li {
@@ -147,12 +143,108 @@
   margin-right: 0;
 }
 
-/* Estilo para el título "Procesos" */
 .process-title {
-  color: white; /* Color blanco para el texto */
-  text-decoration: underline; /* Subrayado */
-  margin: 0; /* Sin margen */
-  padding: 10px 20px; /* Espacio alrededor para una mejor apariencia */
-  font-size: 20px; /* Ajustar tamaño de fuente si es necesario */
-  line-height: 2.5; /* Espacio entre líneas */
+  color: white;
+  text-decoration: underline;
+  margin: 0;
+  padding: 10px 20px;
+  font-size: 20px;
+  line-height: 2.5;
+}
+
+.sidebar.collapsed .process-title {
+  display: none;
+}
+
+/* Espacio de trabajo */
+.workspace {
+  margin-left: 80px;
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+}
+
+.workspace.with-sidebar {
+  margin-left: 250px;
+}
+
+/* Header del espacio de trabajo */
+.workspace-header {
+  background-color: #ffffff;
+  padding: 10px;
+  border: 1px solid #000000;
+  margin-bottom: 20px;
+  font-size: 24px;
+  text-align: center;
+  color: #000000;
+}
+
+/* Contenido del espacio de trabajo */
+.workspace-content {
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  padding: 20px;
+  color: #000000; /* Color de texto en el contenido */
+}
+
+.folder-section {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.folder-section i {
+  font-size: 32px;
+  margin-right: 10px;
+  color: #000000; /* Cambia el color de los íconos de las carpetas a negro */
+}
+
+/* Estilo para los textos de las carpetas */
+.folder-section span {
+  color: #000000; /* Cambia el color del texto de las carpetas a negro */
+}
+
+/* Botones alineados horizontalmente */
+.folder-options {
+  display: flex;
+  gap: 10px; /* Espacio entre los botones */
+}
+
+.folder-options button {
+  padding: 5px 15px;
+  border: 1px solid #ccc;
+  background-color: #f5f5f5;
+  cursor: pointer;
+  color: #000000; /* Cambia el color del texto en los botones a negro */
+}
+
+.folder-options button:hover {
+  background-color: #ddd;
+}
+
+.separator {
+  margin: 20px 0;
+  border-top: 1px solid #000000;
+}
+
+/* Lista de carpetas del usuario */
+.user-folders {
+  margin-top: 10px;
+}
+
+.folder-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.folder-item i {
+  font-size: 24px;
+  margin-right: 10px;
+  color: #000000; /* Cambia el color de los íconos de las carpetas a negro */
+}
+
+/* Estilo para los textos de las carpetas */
+.folder-item span {
+  color: #000000; /* Cambia el color del texto de las carpetas a negro */
 }
