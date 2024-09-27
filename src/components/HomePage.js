@@ -14,6 +14,7 @@ function HomePage() {
     const [searchTerm, setSearchTerm] = useState('');
     const navigate = useNavigate();
 
+    // Cargar carpetas del localStorage
     useEffect(() => {
         const storedFolders = JSON.parse(localStorage.getItem('folders'));
         if (storedFolders) {
@@ -21,46 +22,56 @@ function HomePage() {
         }
     }, []);
 
+    // Guardar carpetas en localStorage cuando cambien
     useEffect(() => {
         localStorage.setItem('folders', JSON.stringify(folders));
     }, [folders]);
 
+    // Función para abrir/cerrar menú
     const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen);
+        setIsMenuOpen(prev => !prev);
     };
 
+    // Función para abrir/cerrar menú de usuario
     const toggleUserMenu = () => {
-        setIsUserMenuOpen(!isUserMenuOpen);
+        setIsUserMenuOpen(prev => !prev);
     };
 
+    // Función para cerrar sesión
     const handleLogout = () => {
         navigate('/');
     };
 
+    // Mostrar el área de trabajo
     const handleAreasClick = () => {
         setIsWorkSpaceVisible(true);
     };
 
+    // Función para crear o editar carpeta
     const handleFolderAction = (e) => {
         e.preventDefault();
 
         if (newFolderName.trim()) {
             if (isEditing) {
+                // Editar carpeta existente
                 const updatedFolders = folders.map((folder, index) =>
                     index === editFolderIndex ? newFolderName : folder
                 );
                 setFolders(updatedFolders);
                 setIsEditing(false);
             } else {
-                setFolders([...folders, newFolderName]);
+                // Crear nueva carpeta
+                setFolders(prevFolders => [...prevFolders, newFolderName]);
             }
-            setNewFolderName(''); // Reiniciar el campo de nombre
-            setEditFolderIndex(-1); // Reiniciar el índice de edición
+            // Reiniciar el campo de nombre y estado de edición
+            setNewFolderName('');
+            setEditFolderIndex(-1);
         } else {
             alert('Por favor, introduce un nombre para la carpeta.');
         }
     };
 
+    // Función para eliminar carpeta
     const handleDeleteFolder = (index) => {
         if (window.confirm("¿Estás seguro de que quieres eliminar esta carpeta?")) {
             const updatedFolders = folders.filter((_, i) => i !== index);
@@ -68,18 +79,21 @@ function HomePage() {
         }
     };
 
+    // Función para preparar la edición de una carpeta
     const handleEditFolder = (index) => {
         setNewFolderName(folders[index]);
         setEditFolderIndex(index);
         setIsEditing(true);
     };
 
+    // Función para cancelar la edición
     const handleCancelEdit = () => {
         setNewFolderName('');
         setEditFolderIndex(-1);
         setIsEditing(false);
     };
 
+    // Filtrar carpetas según el término de búsqueda
     const filteredFolders = folders.filter(folder =>
         folder.toLowerCase().includes(searchTerm.toLowerCase())
     );
@@ -135,6 +149,12 @@ function HomePage() {
                         <i className="fas fa-check-circle"></i>
                         <span className="menu-text">Finalizados</span>
                     </li>
+                    {/* Ocultar el botón cuando el menú esté colapsado */}
+                    {isMenuOpen && (
+                        <div className="start-process-button-container">
+                            <button className="start-process-button">Iniciar proceso</button>
+                        </div>
+                    )}
                 </ul>
             </div>
 
@@ -151,7 +171,7 @@ function HomePage() {
                                 <input
                                     type="text"
                                     value={newFolderName}
-                                    onChange={(e) => setNewFolderName(e.target.value)}
+                                    onChange={(e) => setNewFolderName(e.target.value)} // Permite introducir texto
                                     placeholder="Nombre de la carpeta"
                                 />
                                 <button type="button" onClick={handleFolderAction}>
