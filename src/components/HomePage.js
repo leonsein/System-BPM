@@ -1,31 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './HomePage.css';
 import logo from './mci-technology.png';
+import IniciarProceso from './IniciarProceso'; // Importamos el nuevo componente
 
 function HomePage() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
-    const [isWorkSpaceVisible, setIsWorkSpaceVisible] = useState(false);
-    const [folders, setFolders] = useState([]);
-    const [newFolderName, setNewFolderName] = useState('');
-    const [editFolderIndex, setEditFolderIndex] = useState(-1);
-    const [isEditing, setIsEditing] = useState(false);
-    const [searchTerm, setSearchTerm] = useState('');
+    const [showBPM, setShowBPM] = useState(false); // Estado para controlar la visibilidad del sistema BPM
     const navigate = useNavigate();
-
-    // Cargar carpetas del localStorage
-    useEffect(() => {
-        const storedFolders = JSON.parse(localStorage.getItem('folders'));
-        if (storedFolders) {
-            setFolders(storedFolders);
-        }
-    }, []);
-
-    // Guardar carpetas en localStorage cuando cambien
-    useEffect(() => {
-        localStorage.setItem('folders', JSON.stringify(folders));
-    }, [folders]);
 
     // Función para abrir/cerrar menú
     const toggleMenu = () => {
@@ -42,61 +25,10 @@ function HomePage() {
         navigate('/');
     };
 
-    // Mostrar el área de trabajo
-    const handleAreasClick = () => {
-        setIsWorkSpaceVisible(true);
+    // Función para mostrar el sistema BPM al hacer clic en el botón
+    const handleStartProcess = () => {
+        setShowBPM(true); // Muestra el componente BPM
     };
-
-    // Función para crear o editar carpeta
-    const handleFolderAction = (e) => {
-        e.preventDefault();
-
-        if (newFolderName.trim()) {
-            if (isEditing) {
-                // Editar carpeta existente
-                const updatedFolders = folders.map((folder, index) =>
-                    index === editFolderIndex ? newFolderName : folder
-                );
-                setFolders(updatedFolders);
-                setIsEditing(false);
-            } else {
-                // Crear nueva carpeta
-                setFolders(prevFolders => [...prevFolders, newFolderName]);
-            }
-            // Reiniciar el campo de nombre y estado de edición
-            setNewFolderName('');
-            setEditFolderIndex(-1);
-        } else {
-            alert('Por favor, introduce un nombre para la carpeta.');
-        }
-    };
-
-    // Función para eliminar carpeta
-    const handleDeleteFolder = (index) => {
-        if (window.confirm("¿Estás seguro de que quieres eliminar esta carpeta?")) {
-            const updatedFolders = folders.filter((_, i) => i !== index);
-            setFolders(updatedFolders);
-        }
-    };
-
-    // Función para preparar la edición de una carpeta
-    const handleEditFolder = (index) => {
-        setNewFolderName(folders[index]);
-        setEditFolderIndex(index);
-        setIsEditing(true);
-    };
-
-    // Función para cancelar la edición
-    const handleCancelEdit = () => {
-        setNewFolderName('');
-        setEditFolderIndex(-1);
-        setIsEditing(false);
-    };
-
-    // Filtrar carpetas según el término de búsqueda
-    const filteredFolders = folders.filter(folder =>
-        folder.toLowerCase().includes(searchTerm.toLowerCase())
-    );
 
     return (
         <div className="homepage">
@@ -133,7 +65,7 @@ function HomePage() {
                             <h2 className="process-title">Procesos</h2>
                         </div>
                     )}
-                    <li onClick={handleAreasClick}>
+                    <li>
                         <i className="fas fa-building"></i>
                         <span className="menu-text">Áreas</span>
                     </li>
@@ -149,66 +81,20 @@ function HomePage() {
                         <i className="fas fa-check-circle"></i>
                         <span className="menu-text">Finalizados</span>
                     </li>
-                    {/* Ocultar el botón cuando el menú esté colapsado */}
                     {isMenuOpen && (
                         <div className="start-process-button-container">
-                            <button className="start-process-button">Iniciar proceso</button>
+                            <button className="start-process-button" onClick={handleStartProcess}>
+                                Iniciar proceso
+                            </button>
                         </div>
                     )}
                 </ul>
             </div>
 
-            {isWorkSpaceVisible && (
-                <div className={`workspace ${isMenuOpen ? 'with-sidebar' : ''}`}>
-                    <div className="workspace-header">
-                        <h3>Procesos</h3>
-                    </div>
-
-                    <div className="workspace-content">
-                        <div className="folder-section">
-                            <i className="fas fa-folder"></i>
-                            <div className="folder-options">
-                                <input
-                                    type="text"
-                                    value={newFolderName}
-                                    onChange={(e) => setNewFolderName(e.target.value)} // Permite introducir texto
-                                    placeholder="Nombre de la carpeta"
-                                />
-                                <button type="button" onClick={handleFolderAction}>
-                                    {isEditing ? 'Actualizar' : 'Crear'}
-                                </button>
-                                {isEditing && <button onClick={handleCancelEdit}>Cancelar</button>}
-                            </div>
-                        </div>
-
-                        <div className="search-section">
-                            <input
-                                type="text"
-                                value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                                placeholder="Buscar carpeta..."
-                            />
-                        </div>
-
-                        <hr className="separator" />
-
-                        <div className="user-folders">
-                            {filteredFolders.length > 0 ? (
-                                filteredFolders.map((folder, index) => (
-                                    <div key={index} className="folder-item">
-                                        <i className="fas fa-folder"></i>
-                                        <span>{folder}</span>
-                                        <button onClick={() => handleEditFolder(index)}>Editar</button>
-                                        <button onClick={() => handleDeleteFolder(index)}>Eliminar</button>
-                                    </div>
-                                ))
-                            ) : (
-                                <p>No hay carpetas creadas o no se encontraron coincidencias.</p>
-                            )}
-                        </div>
-                    </div>
-                </div>
-            )}
+            {/* Mostrar el sistema BPM en el espacio de trabajo */}
+            <div className={`workspace ${isMenuOpen ? 'with-sidebar' : ''}`}>
+                {showBPM && <IniciarProceso />} {/* Aquí mostramos el componente BPM */}
+            </div>
         </div>
     );
 }

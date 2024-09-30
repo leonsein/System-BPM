@@ -1,0 +1,25 @@
+/* src/components/IniciarProcesos.css */
+
+.bpm-system {
+    background-color: #f5f5f5;
+    padding: 20px;
+    border: 1px solid #ccc;
+    margin-left: 2px; /* Igualar el margen izquierdo al ancho del menú lateral */
+    height: 100vh; /* Asegura que ocupe toda la altura de la pantalla */
+    transition: margin-left 0.3s ease;
+}
+
+.bpm-system.with-sidebar {
+    margin-left: 250px; /* Mantener el margen cuando el menú lateral está abierto */
+}
+
+.bpm-system h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.bpm-system p {
+    color: #666;
+    font-size: 18px;
+}
