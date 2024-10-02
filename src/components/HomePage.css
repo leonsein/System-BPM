@@ -209,26 +209,53 @@
   padding: 20px;
   color: #000000; /* Color de texto en el contenido */
   max-height: calc(100% - 20px); /* Evita que el contenido sobresalga del área visible */
-  overflow-y: auto; /* Añade la barra de desplazamiento al contenido */
+  overflow-y: auto; /* Habilita la barra de desplazamiento vertical */
 }
 
+/* Botón para iniciar proceso */
 .start-process-button-container {
+  padding: 10px;
   display: flex;
-  justify-content: center; /* Centra el contenido horizontalmente */
-  margin-top: 10px; /* Espaciado superior */
+  justify-content: center;
 }
 
 .start-process-button {
-  padding: 10px 20px; /* Relleno para el botón */
-  border: none; /* Sin borde */
-  background-color: #007bff; /* Color de fondo del botón */
-  color: white; /* Color del texto del botón */
-  border-radius: 5px; /* Bordes redondeados */
-  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-  transition: background-color 0.3s ease; /* Añade una animación al cambiar de color */
+  background-color: #b30018;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 .start-process-button:hover {
-  background-color: #0056b3; /* Cambia el color al pasar el ratón */
+  background-color: #d61229;
 }
 
+/* Espacios de búsqueda y entrada */
+.search-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.search-input {
+  width: 80%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.search-button {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.search-button:hover {
+  background-color: #0056b3;
+}
