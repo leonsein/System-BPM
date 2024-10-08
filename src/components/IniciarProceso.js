@@ -1,20 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './IniciarProceso.css';
+import * as BpmnEditor from "@kogito-tooling/kie-editors-standalone/dist/bpmn";
 
 function IniciarProceso() {
-    const [formName, setFormName] = useState(''); // Estado para el nombre del formulario
+    const [formName, setFormName] = useState(''); 
+    const [showEditor, setShowEditor] = useState(false); 
 
     const handleInputChange = (event) => {
-        setFormName(event.target.value); // Actualiza el nombre del formulario al cambiar el texto
+        setFormName(event.target.value); 
     };
 
     const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
-            if (formName.trim() !== '') { // Verifica que no esté vacío
+            if (formName.trim() !== '') { 
                 alert(`Formulario guardado: ${formName}`);
-                // Aquí podrías implementar lógica adicional si es necesario
             } else {
-                alert('Por favor, ingresa un nombre para el formulario.'); // Mensaje de error si el campo está vacío
+                alert('Por favor, ingresa un nombre para el formulario.'); 
             }
         }
     };
@@ -24,8 +25,27 @@ function IniciarProceso() {
     };
 
     const handleWorkflowButtonClick = () => {
-        alert('Botón de Flujo de Trabajo presionado');
+        setShowEditor(true); 
     };
+
+    useEffect(() => {
+        if (showEditor) {
+            const editor = BpmnEditor.open({
+                container: document.getElementById("bpmn-editor-container"),
+                initialContent: Promise.resolve(""),
+                readOnly: false,
+                resources: new Map([
+                    [
+                        "MiProceso.bpmn",
+                        {
+                            contentType: "text",
+                            content: Promise.resolve("")
+                        }
+                    ]
+                ])
+            });
+        }
+    }, [showEditor]);
 
     return (
         <div className="bpm-system">
@@ -41,6 +61,9 @@ function IniciarProceso() {
                 <button className="action-button" onClick={handleFormButtonClick}>Formularios</button>
                 <button className="action-button" onClick={handleWorkflowButtonClick}>Flujo de Trabajo</button>
             </div>
+            {showEditor && (
+                <div id="bpmn-editor-container" style={{ height: '600px', width: '100%' }} />
+            )}
         </div>
     );
 }
