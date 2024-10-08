@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import * as THREE from 'three';
 import anime from 'animejs/lib/anime.es.js'; 
 import './App.css'; 
-import logo from './mci-technology.png';
+import logo from './images/mci-technology.png';
 
 function App() {
   const [isRedirecting, setIsRedirecting] = useState(false);

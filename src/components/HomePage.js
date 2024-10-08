@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './HomePage.css';
-import logo from './mci-technology.png';
+import logo from '../images/mci-technology.png';
 import IniciarProceso from './IniciarProceso'; // Importamos el nuevo componente
 
 function HomePage() {
