@@ -1,32 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import './IniciarProceso.css';
 import * as BpmnEditor from "@kogito-tooling/kie-editors-standalone/dist/bpmn";
+import { BuilderView, FormBuilder } from '@react-form-builder/designer';
+import { rSuiteComponents } from '@react-form-builder/components-rsuite';
 
 function IniciarProceso() {
-    const [formName, setFormName] = useState(''); 
-    const [showEditor, setShowEditor] = useState(false); 
+    const [formName, setFormName] = useState('');
+    const [showEditor, setShowEditor] = useState(false);
+    const [showFormBuilder, setShowFormBuilder] = useState(false);
 
     const handleInputChange = (event) => {
-        setFormName(event.target.value); 
+        setFormName(event.target.value);
     };
 
     const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
-            if (formName.trim() !== '') { 
+            if (formName.trim() !== '') {
                 alert(`Formulario guardado: ${formName}`);
             } else {
-                alert('Por favor, ingresa un nombre para el formulario.'); 
+                alert('Por favor, ingresa un nombre para el formulario.');
             }
         }
     };
 
     const handleFormButtonClick = () => {
-        alert('Botón de Formularios presionado');
+        setShowFormBuilder(true);  // Mostrar el FormBuilder
     };
 
     const handleWorkflowButtonClick = () => {
-        setShowEditor(true); 
+        setShowEditor(true);
     };
+
+    const components = rSuiteComponents.map(c => c.build());
+    const builderView = new BuilderView(components);
 
     useEffect(() => {
         if (showEditor) {
@@ -61,6 +67,13 @@ function IniciarProceso() {
                 <button className="action-button" onClick={handleFormButtonClick}>Formularios</button>
                 <button className="action-button" onClick={handleWorkflowButtonClick}>Flujo de Trabajo</button>
             </div>
+
+            {showFormBuilder && (
+                <div style={{ height: '600px', width: '100%' }}>
+                    <FormBuilder view={builderView} />
+                </div>
+            )}
+
             {showEditor && (
                 <div id="bpmn-editor-container" style={{ height: '600px', width: '100%' }} />
             )}
