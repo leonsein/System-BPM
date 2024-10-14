@@ -1,41 +1,90 @@
-import React from 'react'; 
-import { useNavigate } from 'react-router-dom'; // Importa useNavigate
-import './LoginPage.css'; // Reutilizamos los mismos estilos
-import { Link } from 'react-router-dom'; // Asegúrate de que Link esté importado
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './LoginPage.css';
+import { Link } from 'react-router-dom';
 
 function RegisterPage() {
-  const navigate = useNavigate(); // Crea una instancia de useNavigate
+  const [formData, setFormData] = useState({
+    nombre: '',
+    apellido: '',
+    correo: '',
+    contraseña: ''
+  });
+  const navigate = useNavigate();
 
-  // Maneja el envío del formulario
-  const handleRegister = (event) => {
-    event.preventDefault(); // Evita el comportamiento por defecto del formulario
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
 
-    // Aquí podrías agregar lógica para manejar el registro del usuario
+  const handleRegister = async (event) => {
+    event.preventDefault();
 
-    // Redirige al usuario a la página de login
-    navigate('/login');
+    try {
+      const response = await fetch('http://localhost:5000/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        alert('Usuario registrado exitosamente');
+        navigate('/login');
+      } else {
+        alert('Error al registrar el usuario');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   return (
     <div className="login-page">
-      {/* Fondo desenfocado */}
       <div className="background-blur"></div>
-
-      {/* Contenido del formulario */}
       <div className="login-container">
         <div className="login-header">
           <h1>¡Regístrate!</h1>
         </div>
         <div className="login-body">
-          <form onSubmit={handleRegister}> {/* Usa el manejador en el formulario */}
-            <input type="text" placeholder="Nombre completo" required />
-            <input type="text" placeholder="Apellido" required />
-            <input type="email" placeholder="Correo electrónico" required />
-            <input type="password" placeholder="Contraseña" required />
+          <form onSubmit={handleRegister}>
+            <input
+              type="text"
+              name="nombre"
+              placeholder="Nombre completo"
+              value={formData.nombre}
+              onChange={handleInputChange}
+              required
+            />
+            <input
+              type="text"
+              name="apellido"
+              placeholder="Apellido"
+              value={formData.apellido}
+              onChange={handleInputChange}
+              required
+            />
+            <input
+              type="email"
+              name="correo"
+              placeholder="Correo electrónico"
+              value={formData.correo}
+              onChange={handleInputChange}
+              required
+            />
+            <input
+              type="password"
+              name="contraseña"
+              placeholder="Contraseña"
+              value={formData.contraseña}
+              onChange={handleInputChange}
+              required
+            />
             <button type="submit">Crear cuenta</button>
             <div className="signup">
               <span>¿Ya tienes una cuenta?</span>
-              <Link to="/login">Inicia sesión</Link> {/* Enlace a la página de login */}
+              <Link to="/login">Inicia sesión</Link>
             </div>
           </form>
         </div>
