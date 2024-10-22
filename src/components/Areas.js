@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './HomePage.css';
 import logo from '../images/mci-technology.png';
-import IniciarProceso from './IniciarProceso';
 import { FileManager } from '@cubone/react-file-manager'; 
 import '@cubone/react-file-manager/dist/style.css'; 
 import axios from 'axios'; 
@@ -10,13 +9,13 @@ import axios from 'axios';
 function Areas() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
-    const [showBPM, setShowBPM] = useState(false);
     const [files, setFiles] = useState([
         { name: 'Documents', isDirectory: true, path: '/Documents', updatedAt: '2024-09-09T10:30:00Z' },
         { name: 'Pictures', isDirectory: true, path: '/Pictures', updatedAt: '2024-09-09T11:00:00Z' },
         { name: 'Pic.png', isDirectory: false, path: '/Pictures/Pic.png', updatedAt: '2024-09-08T16:45:00Z', size: 2048 },
     ]);
-    const navigate = useNavigate(); 
+    
+    const navigate = useNavigate();  // Utilizado para la navegación entre páginas
 
     const toggleMenu = () => {
         setIsMenuOpen(prev => !prev);
@@ -30,8 +29,9 @@ function Areas() {
         navigate('/');
     };
 
+    // Función para iniciar el proceso y redirigir a la página "IniciarProceso"
     const handleStartProcess = () => {
-        setShowBPM(true);
+        navigate('/home');  // Redirige a la página del proceso
     };
 
     const handleRefresh = () => {
@@ -163,17 +163,34 @@ function Areas() {
             </div>
 
             <div className={`workspace ${isMenuOpen ? 'with-sidebar' : ''}`}>
-                {showBPM && <IniciarProceso />}
                 <div className="file-manager">
                     <h2>Administrador de Archivos</h2>
                     <FileManager
                         files={files}
+                        acceptedFileTypes=".txt,.png,.pdf" // Tipos de archivos aceptados
+                        enableFilePreview={true} // Previsualización habilitada
+                        filePreviewPath="https://example.com" // Ruta base para previsualización
+                        fileUploadConfig={{
+                            url: "https://example.com/fileupload", 
+                            headers: { Authorization: "Bearer" + " TOKEN" }
+                        }} // Configuración para carga de archivos
+                        maxFileSize={10485760} // Límite de tamaño de archivo (10MB)
                         onCreateFolder={handleCreateFolder}
                         onDelete={handleDelete}
-                        onRename={handleRename}
+                        onDownload={(filesToDownload) => console.log('Descargando archivos', filesToDownload)}
+                        onError={(error, file) => console.log(`Error: ${error.type} - ${error.message}`, file)}
                         onFileOpen={handleFileOpen}
-                        onUpload={handleUpload}
-                        onRefresh={handleRefresh}  // Añadido para manejar el refresco
+                        onFileUploaded={(response) => {
+                            const newFile = JSON.parse(response); 
+                            setFiles((prev) => [...prev, newFile]);
+                        }}
+                        onFileUploading={(file, parentFolder) => ({
+                            extraData: "Valor extra"
+                        })}
+                        onRename={handleRename}
+                        onRefresh={handleRefresh}
+                        onLayoutChange={(layout) => console.log('Cambiando layout a', layout)}
+                        layout="grid" // Modo por defecto
                     />
                 </div>
             </div>
