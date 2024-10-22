@@ -1,0 +1,19 @@
+@import './HomePage.css';  /* Importa los estilos base de HomePage */
+
+/* Estilos adicionales para el administrador de archivos */
+.file-manager {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.file-manager h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.file-manager p {
+  font-size: 16px;
+  color: #333;
+}

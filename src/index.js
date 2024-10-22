@@ -8,6 +8,7 @@ import './index.css';
 import ForgotPasswordPage from './components/ForgotPasswordPage';
 import ResetPasswordPage from './components/ResetPasswordPage';
 import HomePage from './components/HomePage';
+import Areas from './components/Areas';
 
 const rootElement = document.getElementById('root'); // Obtén el elemento root
 const root = createRoot(rootElement); // Crea el root
@@ -22,6 +23,7 @@ root.render(
       <Route path="/forgot-password" element={<ForgotPasswordPage />} /> {/* Página de olvido de contraseña */}
       <Route path="/reset-password" element={<ResetPasswordPage />} />
       <Route path="/home" element={<HomePage />} /> {/* Página de inicio */}
+      <Route path="/areas" element={<Areas />} /> {/* Nueva ruta */}
     </Routes>
   </Router>
 );

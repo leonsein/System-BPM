@@ -2,32 +2,33 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './HomePage.css';
 import logo from '../images/mci-technology.png';
-import IniciarProceso from './IniciarProceso'; // Importamos el nuevo componente
+import IniciarProceso from './IniciarProceso';
 
 function HomePage() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
-    const [showBPM, setShowBPM] = useState(false); // Estado para controlar la visibilidad del sistema BPM
-    const navigate = useNavigate();
+    const [showBPM, setShowBPM] = useState(false);
+    const navigate = useNavigate(); // Para la navegación
 
-    // Función para abrir/cerrar menú
     const toggleMenu = () => {
         setIsMenuOpen(prev => !prev);
     };
 
-    // Función para abrir/cerrar menú de usuario
     const toggleUserMenu = () => {
         setIsUserMenuOpen(prev => !prev);
     };
 
-    // Función para cerrar sesión
     const handleLogout = () => {
         navigate('/');
     };
 
-    // Función para mostrar el sistema BPM al hacer clic en el botón
     const handleStartProcess = () => {
-        setShowBPM(true); // Muestra el componente BPM
+        setShowBPM(true);
+    };
+
+    // Función para navegar a "Areas"
+    const handleGoToAreas = () => {
+        navigate('/areas');  // Redirige a la página de Áreas
     };
 
     return (
@@ -65,7 +66,7 @@ function HomePage() {
                             <h2 className="process-title">Procesos</h2>
                         </div>
                     )}
-                    <li>
+                    <li onClick={handleGoToAreas}>  {/* Evento onClick para redirigir */}
                         <i className="fas fa-building"></i>
                         <span className="menu-text">Áreas</span>
                     </li>
@@ -91,9 +92,8 @@ function HomePage() {
                 </ul>
             </div>
 
-            {/* Mostrar el sistema BPM en el espacio de trabajo */}
             <div className={`workspace ${isMenuOpen ? 'with-sidebar' : ''}`}>
-                {showBPM && <IniciarProceso />} {/* Aquí mostramos el componente BPM */}
+                {showBPM && <IniciarProceso />}
             </div>
         </div>
     );
