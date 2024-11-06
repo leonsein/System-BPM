@@ -9,13 +9,14 @@ import axios from 'axios';
 function Areas() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+    const [isLoading, setIsLoading] = useState(false); // Estado para operaciones en curso
     const [files, setFiles] = useState([
         { name: 'Documents', isDirectory: true, path: '/Documents', updatedAt: '2024-09-09T10:30:00Z' },
         { name: 'Pictures', isDirectory: true, path: '/Pictures', updatedAt: '2024-09-09T11:00:00Z' },
         { name: 'Pic.png', isDirectory: false, path: '/Pictures/Pic.png', updatedAt: '2024-09-08T16:45:00Z', size: 2048 },
     ]);
     
-    const navigate = useNavigate();  // Utilizado para la navegación entre páginas
+    const navigate = useNavigate();
 
     const toggleMenu = () => {
         setIsMenuOpen(prev => !prev);
@@ -29,13 +30,11 @@ function Areas() {
         navigate('/');
     };
 
-    // Función para iniciar el proceso y redirigir a la página "IniciarProceso"
     const handleStartProcess = () => {
-        navigate('/home');  // Redirige a la página del proceso
+        navigate('/home');
     };
 
     const handleRefresh = () => {
-        // Reinicia la lista de archivos al estado inicial
         setFiles([
             { name: 'Documents', isDirectory: true, path: '/Documents', updatedAt: '2024-09-09T10:30:00Z' },
             { name: 'Pictures', isDirectory: true, path: '/Pictures', updatedAt: '2024-09-09T11:00:00Z' },
@@ -55,7 +54,7 @@ function Areas() {
     };
 
     const handleUpload = async (file, parentFolder) => {
-        console.log('Uploading file:', file);
+        setIsLoading(true);
         const formData = new FormData();
         formData.append('file', file);
 
@@ -76,6 +75,8 @@ function Areas() {
         } catch (error) {
             console.error('Error al subir el archivo:', error);
             alert('Error al subir el archivo');
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -101,6 +102,33 @@ function Areas() {
         }
     };
 
+    const handlePaste = (filesToPaste, destinationFolder, operationType) => {
+        // Verificar si destinationFolder es nulo o la raíz ("/")
+        const destPath = destinationFolder && destinationFolder.path ? destinationFolder.path : '/';
+        
+        console.log(`Pasting files into ${destPath} with operation ${operationType}`);
+    
+        setFiles(prevFiles => {
+            const existingFilesPaths = prevFiles.map(file => file.path);
+            const updatedFiles = [...prevFiles];
+    
+            filesToPaste.forEach(file => {
+                // Si la carpeta de destino es la raíz, ajusta el path como "/nombreArchivo"
+                const newPath = destPath === '/' 
+                    ? `/${file.name}` 
+                    : `${destPath}/${file.name}`;
+    
+                // Verificar que no haya duplicados en la ruta final
+                if (!existingFilesPaths.includes(newPath)) {
+                    const updatedFile = { ...file, path: newPath, updatedAt: new Date().toISOString() };
+                    updatedFiles.push(updatedFile);
+                }
+            });
+    
+            return updatedFiles;
+        });
+    };
+        
     return (
         <div className="homepage">
             <div className="topbar">
@@ -167,14 +195,18 @@ function Areas() {
                     <h2>Administrador de Archivos</h2>
                     <FileManager
                         files={files}
-                        acceptedFileTypes=".txt,.png,.pdf" // Tipos de archivos aceptados
-                        enableFilePreview={true} // Previsualización habilitada
-                        filePreviewPath="https://example.com" // Ruta base para previsualización
+                        acceptedFileTypes=".txt,.png,.pdf"
+                        enableFilePreview={true}
+                        filePreviewPath="https://example.com"
                         fileUploadConfig={{
                             url: "https://example.com/fileupload", 
                             headers: { Authorization: "Bearer" + " TOKEN" }
-                        }} // Configuración para carga de archivos
-                        maxFileSize={10485760} // Límite de tamaño de archivo (10MB)
+                        }}
+                        maxFileSize={10485760}
+                        height="600px"
+                        width="100%"
+                        isLoading={isLoading}
+                        layout="grid"
                         onCreateFolder={handleCreateFolder}
                         onDelete={handleDelete}
                         onDownload={(filesToDownload) => console.log('Descargando archivos', filesToDownload)}
@@ -190,7 +222,7 @@ function Areas() {
                         onRename={handleRename}
                         onRefresh={handleRefresh}
                         onLayoutChange={(layout) => console.log('Cambiando layout a', layout)}
-                        layout="grid" // Modo por defecto
+                        onPaste={handlePaste}
                     />
                 </div>
             </div>
