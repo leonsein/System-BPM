@@ -53,33 +53,6 @@ function Areas() {
         setFiles(prevFiles => [...prevFiles, newFolder]);
     };
 
-    const handleUpload = async (file, parentFolder) => {
-        setIsLoading(true);
-        const formData = new FormData();
-        formData.append('file', file);
-
-        try {
-            await axios.post('/api/upload', formData, {
-                headers: { 'Content-Type': 'multipart/form-data' },
-            });
-
-            const newFile = {
-                name: file.name,
-                isDirectory: false,
-                path: `${parentFolder ? parentFolder.path : ''}/${file.name}`,
-                updatedAt: new Date().toISOString(),
-                size: file.size,
-            };
-
-            setFiles(prevFiles => [...prevFiles, newFile]);
-        } catch (error) {
-            console.error('Error al subir el archivo:', error);
-            alert('Error al subir el archivo');
-        } finally {
-            setIsLoading(false);
-        }
-    };
-
     const handleDelete = (filesToDelete) => {
         setFiles(prevFiles => 
             prevFiles.filter(file => !filesToDelete.some(f => f.path === file.path))
@@ -198,10 +171,7 @@ function Areas() {
                         acceptedFileTypes=".txt,.png,.pdf"
                         enableFilePreview={true}
                         filePreviewPath="https://example.com"
-                        fileUploadConfig={{
-                            url: "https://example.com/fileupload", 
-                            headers: { Authorization: "Bearer" + " TOKEN" }
-                        }}
+                        fileUploadConfig={handleUpload}
                         maxFileSize={10485760}
                         height="600px"
                         width="100%"
