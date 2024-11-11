@@ -171,7 +171,10 @@ function Areas() {
                         acceptedFileTypes=".txt,.png,.pdf"
                         enableFilePreview={true}
                         filePreviewPath="https://example.com"
-                        fileUploadConfig={handleUpload}
+                        fileUploadConfig={{
+                            url: "https://example.com/fileupload", 
+                            headers: { Authorization: "Bearer" + " TOKEN" }
+                        }}
                         maxFileSize={10485760}
                         height="600px"
                         width="100%"
