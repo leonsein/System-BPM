@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'; // Importamos useNavigate
-import './LoginPage.css'; // Asegúrate de tener este archivo CSS
+import '../Login/LoginPage.css'; // Asegúrate de tener este archivo CSS
 
 function LoginPage() {
   const [correo, setCorreo] = useState(''); // Estado para el correo

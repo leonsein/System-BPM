@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'; // Importamos el hook para navegar
-import './LoginPage.css'; // Reutilizamos los mismos estilos
+import '../Login/LoginPage.css'; // Reutilizamos los mismos estilos
 
 function ForgotPasswordPage() {
   const [showDialog, setShowDialog] = useState(false); // Estado para controlar el diálogo

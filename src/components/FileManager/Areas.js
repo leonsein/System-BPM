@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './HomePage.css';
-import logo from '../images/mci-technology.png';
+import '../Home/HomePage.css';
+import logo from '../../images/mci-technology.png';
 import { FileManager } from '@cubone/react-file-manager'; 
 import '@cubone/react-file-manager/dist/style.css'; 
 import axios from 'axios'; 

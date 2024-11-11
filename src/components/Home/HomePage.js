@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './HomePage.css';
-import logo from '../images/mci-technology.png';
-import IniciarProceso from './IniciarProceso';
+import logo from '../../images/mci-technology.png';
+import IniciarProceso from '../Form&BPM/IniciarProceso';
 
 function HomePage() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
