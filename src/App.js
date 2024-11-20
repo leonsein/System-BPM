@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import * as THREE from 'three';
-import anime from 'animejs/lib/anime.es.js'; 
 import './App.css'; 
-import logo from './images/mci-technology.png';
+import logo from './images/mci-technology.png'; // Ruta del logo
 
 function App() {
   const [isRedirecting, setIsRedirecting] = useState(false);
@@ -18,66 +16,6 @@ function App() {
     // Mostrar el overlay durante la carga
     const overlay = document.getElementById('overlay');
     overlay.style.display = 'block';
-
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    document.getElementById('three-container').appendChild(renderer.domElement);
-
-    const particleCount = 1000;
-    const particles = new THREE.BufferGeometry();
-    const particlePositions = new Float32Array(particleCount * 3);
-
-    for (let i = 0; i < particleCount; i++) {
-      const x = (Math.random() - 0.5) * 1000;
-      const y = (Math.random() - 0.5) * 1000;
-      const z = (Math.random() - 0.5) * 1000;
-      particlePositions[i * 3] = x;
-      particlePositions[i * 3 + 1] = y;
-      particlePositions[i * 3 + 2] = z;
-    }
-
-    particles.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
-    const particleMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 2 });
-    const particleSystem = new THREE.Points(particles, particleMaterial);
-    scene.add(particleSystem);
-    camera.position.z = 400;
-
-    function animate() {
-      requestAnimationFrame(animate);
-      particleSystem.rotation.x += 0.001;
-      particleSystem.rotation.y += 0.001;
-      renderer.render(scene, camera);
-    }
-
-    animate();
-
-    window.addEventListener('resize', () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-    });
-
-    anime.timeline({ loop: false })
-      .add({
-        targets: '.letter',
-        translateY: [100, 0],
-        opacity: [0, 1],
-        scale: [0.3, 1],
-        duration: 1000,
-        easing: 'easeOutExpo',
-        delay: anime.stagger(100),
-      });
-
-    anime({
-      targets: '.underline',
-      scaleX: [0, 1],
-      opacity: [0, 1],
-      duration: 1500,
-      easing: 'easeOutExpo',
-      delay: 2000,
-    });
 
     // Ocultar el overlay una vez que la carga esté completa
     const handleLoad = () => {
@@ -100,7 +38,14 @@ function App() {
       {/* Overlay que cubre la página durante la carga */}
       <div id="overlay"></div>
       <div className={`App ${isRedirecting ? 'redirecting' : ''}`}>
-        <div id="three-container"></div>
+        {/* Video de fondo */}
+        <div id="video-background">
+          <video autoPlay loop muted>
+            <source src="/path-to-your-video.mp4" type="video/mp4" />
+            Tu navegador no soporta el formato de video.
+          </video>
+        </div>
+
         <header className="App-header">
           <img src={logo} className="logo" alt="logo" />
           <div className="icon-container">
@@ -110,6 +55,7 @@ function App() {
             </div>
           </div>
         </header>
+
         <div className="content">
           <h1 className="letter">Bienvenido al Sistema BPM</h1>
           <h2 className="letter">MCI TECHNOLOGY</h2>

@@ -51,27 +51,36 @@ body {
   height: 40px; /* Ajusta el tamaño del logotipo */
 }
 
-/* Contenedor de íconos en el header */
+/* Contenedor de iconos e íconos */
 .icon-container {
   display: flex;
   align-items: center;
-  margin-left: auto; /* Alinea los íconos a la derecha */
+  margin-left: auto; /* Alinea el icono a la derecha */
 }
 
-/* Estilo del ícono de login */
 .login-icon {
-  font-size: 40px;
-  color: black;
+  display: flex;
+  align-items: center;
   cursor: pointer;
-  margin-left: 20px; /* Espacio entre íconos si es necesario */
+  margin-left: 20px; /* Espacio entre el icono y otros elementos si es necesario */
 }
 
-/* Estilo del ícono de la persona */
-.person-icon {
-  font-size: 40px;
+/* Ajusta el ícono de login */
+.login-icon i {
+  font-size: 35px; /* Mantiene el tamaño del ícono */
   color: black;
-  cursor: pointer;
-  margin-left: 20px; /* Espacio entre íconos si es necesario */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px; /* Espacio entre el ícono y el texto */
+}
+
+/* Ajusta el texto "Acceder" */
+.login-text {
+  font-size: 0.8em; /* Ajusta el tamaño del texto (puedes cambiar el valor) */
+  color: black;
+  display: flex;
+  align-items: center; /* Centra verticalmente el texto */
 }
 
 /* Estilo del contenido principal */
@@ -144,17 +153,6 @@ p {
   }
 }
 
-/* Estilos para el contenedor del fondo de Three.js */
-#three-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0; /* Asegúrate de que esté detrás de todo el contenido */
-  background-color: transparent; /* Elimina el fondo negro si es necesario */
-}
-
 /* Estilos durante la redirección */
 .App.redirecting {
   opacity: 0;
@@ -168,35 +166,6 @@ p {
   visibility: hidden;
 }
 
-/* Contenedor de iconos e íconos */
-.icon-container {
-  display: flex;
-  align-items: center;
-  margin-left: auto; /* Alinea el icono a la derecha */
-}
 
-.login-icon {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  margin-left: 20px; /* Espacio entre el icono y otros elementos si es necesario */
-}
 
-/* Ajusta el ícono de login */
-.login-icon i {
-  font-size: 35px; /* Mantiene el tamaño del ícono */
-  color: black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 10px; /* Espacio entre el ícono y el texto */
-}
-
-/* Ajusta el texto "Acceder" */
-.login-text {
-  font-size: 0.8em; /* Ajusta el tamaño del texto (puedes cambiar el valor) */
-  color: black;
-  display: flex;
-  align-items: center; /* Centra verticalmente el texto */
-}
 
