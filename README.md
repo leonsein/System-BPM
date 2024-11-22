@@ -23,7 +23,7 @@ Para el desarrollo de este proyecto, se emplearon las siguientes tecnologías:
 
 - **HTML**
 - **CSS**
-- **React.js**
+- **React**
 - **Node.js**
 - **Express.js**
 - **PostgreSQL**
