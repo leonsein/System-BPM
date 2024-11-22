@@ -33,13 +33,28 @@ Para el desarrollo de este proyecto, se emplearon las siguientes tecnologías:
 
 A continuación, algunas capturas de pantalla de la aplicación:
 
-### 🖥️ Background MCI
-![Dashboard](https://github.com/user-attachments/assets/a66e208d-58d1-4ed6-9381-6768e8f30514)
+### Background MCI
+![Background](https://github.com/user-attachments/assets/a66e208d-58d1-4ed6-9381-6768e8f30514)
 
-### 📊 Visualización de Procesos
-![Process Flow](https://via.placeholder.com/800x400?text=Captura+del+Flujo+de+Procesos)
+### Login
+![Login](https://github.com/user-attachments/assets/8fc8caa6-5515-4990-a8ab-c55b19087df0)
 
-### ⚙️ Panel de Configuración
-![Configuration](https://via.placeholder.com/800x400?text=Captura+del+Panel+de+Configuración)
+### Register
+![Register](https://github.com/user-attachments/assets/b48b9fad-5683-4804-af1f-e5cbff38f783)
+
+### ForgotPassword
+![ForgotPass](https://github.com/user-attachments/assets/6ab7565d-1767-4c5d-80f8-331492ffcd2c)
+
+### Home
+![Home](https://github.com/user-attachments/assets/9e5e6ed1-3bb9-4fff-af17-c3d9c37dbf0d)
+
+### FileManager
+![FileManager](https://github.com/user-attachments/assets/87243b46-a219-459e-8bf4-538c6d453907)
+
+### StartProcess
+![StartProcess](https://github.com/user-attachments/assets/850f5e44-bc0a-4384-9caa-1f3a70fbeab8)
+
+### BPMN
+![Bpmn](https://github.com/user-attachments/assets/b3590449-2754-4d23-b5e6-36dd0e73d9f1)
 
 ---
