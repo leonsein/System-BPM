@@ -29,7 +29,7 @@ Para el desarrollo de este proyecto, se emplearon las siguientes tecnologías:
 - **PostgreSQL**
 ---
 
-## 📷 Capturas del Proyecto
+## 📷 Capturas del proyecto
 
 A continuación, algunas capturas de pantalla de la aplicación:
 
